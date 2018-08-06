@@ -1,0 +1,206 @@
+<template>
+   <div>
+       <div class='topSearch-con'>
+           <topSearch></topSearch>
+       </div>
+       <div class='table-con' style='paddingBottom:30px;'>
+           <userTable :columns1='columns1' :data1='data1' :modal1='modal'></userTable>
+       </div>
+   </div>
+</template>
+<script>
+
+import topSearch from './component/topSearch'
+import userTable from './component/userTable'
+export default{
+	name:'manageGroup',
+	components:{
+	  topSearch,
+	  userTable
+	},
+	data(){
+	   return{
+           modal:false,
+           columns1:[
+           {
+             'title':'ID',
+             'key':'id',
+             'fixed':'left',
+             'width':50
+           },
+           {
+              'title':'昵称',
+              'key':'name',
+              'width':200
+           },
+           {
+              'title':'手机号码',
+              'key':'phone',
+              'width':200
+           },
+           {
+              'title':'性别',
+              'key':'sex',
+              'width':100
+           },
+           {
+              'title':'可用积分',
+              'key':'score',
+              'width':100
+           },
+           {
+              'title':'VIP',
+              'key':'vip',
+              'width':100
+           },
+           {
+              'title':'注册时间',
+              'key':'registerTime',
+              'width':300
+           },
+           {
+               'title':'最后登录时间',
+               'key':'loginTime',
+               'width':300
+           },
+           {
+               'title':'操作',
+               'key':'handle',
+               'width':300,
+               render:(h,params) => {
+                 return h('div',[
+                    h('Button',{
+                      props:{
+                         type:'info',
+                         size:'small'
+                      },
+                      style:{
+                         marginRight:'5px'
+                      },
+                      on:{
+                        click:() => {
+                          this.$router.push({path:'/user/userCheck'});
+                        }
+                      }
+                    },'查看'),
+                    h('Button',{
+                      props:{
+                        type:'success',
+                        size:'small'
+                      },
+                      style:{
+                        marginRight:'5px'
+                      },
+                      on:{
+                        click:() => {
+                          this.$router.push({path:'/user/userEdit'});
+                        }
+                      }
+                    },'编辑'),
+                    h('Button',{
+                       props:{
+                         type:'error',
+                         size:'small'
+                       },
+                       on:{
+                        click:() => {
+                          this.remove(params.index);
+                        }
+                       }
+                    },'删除')
+                 ])
+               }
+           }
+         ],
+         data1:[
+            {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+           {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+            {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+           {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+            {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+            {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+            {
+               'id':'1',
+               'name':'1325456486',
+               'phone':'15200000003',
+               'sex':'女',
+               'score':'0',
+               'vip':'是',
+               'registerTime':'2018-7-26',
+               'loginTime':'2018-7-26',
+            },
+         ]
+	   }
+	},
+	methods:{
+	  remove(index){
+	    this.$Modal.confirm({
+	      title:'删除管理员',
+	      content:'您确定要删除这条管理员信息吗',
+	      onOk:() => {
+	        this.data1.splice(index,1);
+	      },
+	      onCancel:() => {
+	        this.$Modal.remove();
+	      }
+	    })
+	  }
+	}
+}
+
+</script>
+<style scoped></style>
